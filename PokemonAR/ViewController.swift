@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 import ARKit
+import GameplayKit
 
 class ViewController: UIViewController, ARSKViewDelegate {
     
@@ -55,7 +56,10 @@ class ViewController: UIViewController, ARSKViewDelegate {
     // MARK: - ARSKViewDelegate
     
     func view(_ view: ARSKView, nodeFor anchor: ARAnchor) -> SKNode? {
-        return nil
+        let random =  GKRandomSource.sharedRandom()
+        let pokemonId = random.nextInt(upperBound: 4)
+        
+        return SKSpriteNode(imageNamed: "pokemon\(pokemonId)")
     }
     
     func session(_ session: ARSession, didFailWithError error: Error) {
